@@ -2,8 +2,7 @@ package HealthTrack;
 
 public class Paciente {
 
-    private String Nome, Status;
-    private int CPF;
+    private String Nome, CPF, Status;
 
     public String getNome() {
         return Nome;
@@ -13,19 +12,19 @@ public class Paciente {
         Nome = nome;
     }
 
-    public int getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(int CPF) {
-        this.CPF = CPF;
-    }
-
     public String getStatus() {
         return Status;
     }
 
     public void setStatus(String status) {
         Status = status;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
     }
 }
