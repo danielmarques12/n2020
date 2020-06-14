@@ -1,8 +1,8 @@
-package HealthTrack;
+package Old;
 
 public class Paciente {
 
-    private String Nome, Status;
+    private String Nome;
     private int CPF;
 
     public String getNome() {
@@ -19,13 +19,5 @@ public class Paciente {
 
     public void setCPF(int CPF) {
         this.CPF = CPF;
-    }
-
-    public String getStatus() {
-        return Status;
-    }
-
-    public void setStatus(String status) {
-        Status = status;
     }
 }
