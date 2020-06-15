@@ -43,7 +43,7 @@ public class MetodosAuxiliares {
     public String obterCPFDoPaciente(){
 
         return JOptionPane.showInputDialog(null,
-            "Digite o CPF do paciente que deseja puxar o registro: ");
+            "Digite o CPF do paciente: ");
     }
 
 }
