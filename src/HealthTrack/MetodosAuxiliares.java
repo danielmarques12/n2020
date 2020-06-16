@@ -46,4 +46,14 @@ public class MetodosAuxiliares {
             "Digite o CPF do paciente: ");
     }
 
+    public void mensagemJoptionPane(Paciente paciente, String mensagem){
+
+        JOptionPane.showMessageDialog(null, mensagem +
+            "\nNome: " + paciente.getNome() +
+            "\nCPF: " + paciente.getCPF());
+    }
+
+    public void mensagemFinalizandoSistema(){
+        JOptionPane.showMessageDialog(null, "Finalizando sistema...");
+    }
 }

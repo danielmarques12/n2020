@@ -25,7 +25,7 @@ public class Atendimento {
                 case 2 -> realizarAtendimento();
                 case 3 -> liberacaoDeVagaNaUnidade(metodosAuxiliares.obterCPFDoPaciente());
                 case 4 -> mostrarPaciente(metodosAuxiliares.obterCPFDoPaciente());
-                case 5 -> JOptionPane.showMessageDialog(null, "Finalizando sistema...");
+                case 5 -> metodosAuxiliares.mensagemFinalizandoSistema();
             }
         }
     }
@@ -58,51 +58,29 @@ public class Atendimento {
             Paciente paciente = filaParaAtendimento.dequeue();
             String CPF = paciente.getCPF();
 
-            JOptionPane.showMessageDialog(null,
-        "A seguir, será feita uma avaliação dos sintomas do paciente. " +
-                "\nNome: " + paciente.getNome() +
-                "\nCPF: " + paciente.getCPF());
+            metodosAuxiliares.mensagemJoptionPane(paciente,
+    "A seguir, será feita uma avaliação dos sintomas do paciente.");
 
             if(metodosAuxiliares.menuAtendimento() == 3){
 
                 if(pacientesInternados.size() == 2){
 
-                    JOptionPane.showMessageDialog(null,
-                "Todos os leitos estão ocupados no momento." +
-                        "O paciente " + paciente.getNome() + " foi adicionado na lista de espera para internação" +
-                        "\nCPF: " + paciente.getCPF());
+                    metodosAuxiliares.mensagemJoptionPane(paciente,
+            "Todos os leitos estão ocupados no momento." +
+                     "\nO paciente foi adicionado na lista de espera para internação");
 
                     filaParaInternacao.enqueue(paciente);
-
-                    for (Paciente p : listaGeralDePacientes){
-                        if(p.getCPF().equals(CPF)){
-                            p.setStatus("filaInternação");
-                        }
-                    }
+                    setStatus(paciente.getCPF(), "filaInternação");
                 }
                 else{
                     pacientesInternados.add(paciente);
-
-                    JOptionPane.showMessageDialog(null,
-                "O paciente " + paciente.getNome() + " foi internado" +
-                        "\nCPF: " + paciente.getCPF());
-
-                    for (Paciente p : listaGeralDePacientes){
-                        if(p.getCPF().equals(CPF)){
-                            p.setStatus("internado");
-                        }
-                    }
+                    metodosAuxiliares.mensagemJoptionPane(paciente, "O paciente foi internado");
+                    setStatus(paciente.getCPF(), "Internado");
                 }
             }
             else{
-                for (Paciente p : listaGeralDePacientes){
-                    if(p.getCPF().equals(CPF)){
-                        p.setStatus("liberado");
-                    }
-                }
-                JOptionPane.showMessageDialog(null,
-            "Paciente " + paciente.getNome() + " liberado." +
-                    "\nCPF: " + paciente.getCPF());
+                setStatus(paciente.getCPF(), "Liberado");
+                metodosAuxiliares.mensagemJoptionPane(paciente, "Paciente liberado.");
             }
         }
     }
@@ -130,15 +108,10 @@ public class Atendimento {
                     Paciente novoInternado = filaParaInternacao.dequeue();
                     pacientesInternados.add(novoInternado);
 
-                    for(Paciente p : listaGeralDePacientes){
-                        if(p.getCPF().equals(novoInternado.getCPF())){
-                            p.setStatus("Internado");
-                        }
-                    }
+                    setStatus(novoInternado.getCPF(), "Internado");
 
-                    JOptionPane.showMessageDialog(null,
-                        novoInternado.getNome() + " foi internado na vaga de leito que surgiu." +
-                        "CPF: " + novoInternado.getCPF());
+                    metodosAuxiliares.mensagemJoptionPane(novoInternado,
+            "O leito que foi desocupado, agora receberá o paciente: ");
                 }
             }
         }
@@ -153,6 +126,15 @@ public class Atendimento {
             "Nome: " + paciente.getNome() +
                     "\nCPF: " + paciente.getCPF() +
                     "\nStatus: " + paciente.getStatus());
+            }
+        }
+    }
+
+    private void setStatus(String CPF, String status){
+
+        for(Paciente p : listaGeralDePacientes){
+            if(p.getCPF().equals(CPF)){
+                p.setStatus(status);
             }
         }
     }
