@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Atendimento {
 
-    public final int leitos = 10;
     ArrayList<Paciente> listaGeralDePacientes = new ArrayList();
     ArrayList<Paciente> pacientesInternados = new ArrayList();
     FilaSequencial filaParaAtendimento = new FilaSequencial();
